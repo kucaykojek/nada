@@ -16,7 +16,7 @@ const platforms = [
   {
     label: "Listen on Spotify",
     icon: <SocialSpotify width={30} />,
-    href: "https://open.spotify.com/artist/5XUy3uAlHzD8mUGZDBE9Kw?si=pvvuqFcQTUeVZBeZ97PUZg",
+    href: "https://open.spotify.com/artist/5XUy3uAlHzD8mUGZDBE9Kw",
     className: "cta-spotify",
   },
 ];
