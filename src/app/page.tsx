@@ -36,9 +36,9 @@ const socials = [
 
 export default function Home() {
   return (
-    <div className="relative w-screen h-screen">
-      <video src="/bg.mp4" muted autoPlay loop className="top-0 left-0 fixed w-screen h-screen object-cover" />
-      <div className="top-0 left-0 z-[1] fixed w-screen h-screen pattern" />
+    <div className="relative w-screen h-[100dvh]">
+      <video src="/bg.mp4" muted autoPlay loop className="top-0 left-0 fixed w-screen h-[100dvh] object-cover" />
+      <div className="top-0 left-0 z-[1] fixed w-screen h-[100dvh] pattern" />
       <div className="z-10 relative flex flex-col justify-end items-center gap-6 p-4 w-screen h-[calc(100dvh-10rem)] text-center">
         <h1 className="font-bold text-2xl tracking-[0.5rem]">Nada Ayu Lestari</h1>
         <div className="flex md:flex-row flex-col items-center gap-4 text-left">
