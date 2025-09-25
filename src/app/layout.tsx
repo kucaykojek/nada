@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Aleo } from "next/font/google";
+import { GoogleTagManager } from "@next/third-parties/google";
+
 import "./globals.css";
 
 const fontSans = Aleo({
@@ -20,6 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-T74545J2" />
       <body className={`${fontSans.variable} antialiased`}>{children}</body>
     </html>
   );
