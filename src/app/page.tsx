@@ -120,7 +120,7 @@ export default function Home() {
               <a
                 key={`platform-${idx}`}
                 className={cn(
-                  "flex justify-center items-center hover:bg-white/10 opacity-90 hover:opacity-100 grayscale hover:grayscale-0 rounded-lg w-10 h-10 hover:scale-110 transition-all ease-in-out"
+                  "flex justify-center items-center hover:bg-white/10 opacity-90 hover:opacity-100 rounded-lg w-10 h-10 hover:scale-110 transition-all ease-in-out"
                 )}
                 href={val.href}
                 title={val.label}
