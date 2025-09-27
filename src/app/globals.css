@@ -6,6 +6,7 @@
 }
 
 body {
+  background-color: #DAB9C2;
   color: var(--foreground);
   font-family: var(--font-sans);
 }
