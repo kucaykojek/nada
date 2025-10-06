@@ -1,18 +1,19 @@
-import type { Metadata } from "next";
-import { Aleo } from "next/font/google";
-import { GoogleTagManager } from "@next/third-parties/google";
+import type { Metadata } from 'next';
+import { Shadows_Into_Light_Two } from 'next/font/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 
-import "./globals.css";
+import './globals.css';
 
-const fontSans = Aleo({
-  variable: "--font-sans",
-  subsets: ["latin"],
+const fontSans = Shadows_Into_Light_Two({
+  variable: '--font-sans',
+  weight: '400',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Nada Ayu Lestari",
+  title: 'Nada Ayu Lestari',
   description:
-    "Hai, aku Nada Ayu Lestari, tapi panggil saja Nada. Genre favoritku? Rock, pastinya. Tapi, jujur aja, banyak! Rock, Pop, Country/Folk, Elektronik, Indie… agak campur aduk ya.",
+    'Hai, aku Nada Ayu Lestari, tapi panggil saja Nada. Genre favoritku? Rock, pastinya. Tapi, jujur aja, banyak! Rock, Pop, Country/Folk, Elektronik, Indie… agak campur aduk ya.',
 };
 
 export default function RootLayout({

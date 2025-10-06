@@ -6,19 +6,9 @@
 }
 
 body {
-  background-color: #DAB9C2;
+  background-color: #dab9c2;
   color: var(--foreground);
   font-family: var(--font-sans);
-}
-
-.pattern {
-  background-image: radial-gradient(
-    circle,
-    rgba(185, 185, 185, 0.5) 1px,
-    rgba(0, 0, 0, 0) 1px
-  );
-  background-size: 1rem 1rem;
-  mix-blend-mode: multiply;
 }
 
 .cta-youtube {
