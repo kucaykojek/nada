@@ -25,6 +25,7 @@ const Release = ({ release }: { release: Release }) => {
           width={150}
           height={150}
           alt={release.title}
+          priority
           className="object-cover group-hover:scale-110 transition-all ease-in-out"
         />
       </div>
