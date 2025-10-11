@@ -94,6 +94,7 @@ export const RELEASES: Release[] = [
     bg: '/images/bg-di-negeri-ini.webp',
     bgColor: '#121212',
     spotifyEmbedSource: '',
+    spotifyAlbumId: '2XqpiWVWMKRLoYDUrhLdoZ',
     desc: '“Di Negeri Ini” adalah lagu tentang ketimpangan dan perjuangan suara rakyat di tengah kuasa yang menutup mata. Dengan lirik lugas dan penuh makna, lagu ini menjadi cermin sosial tentang keadilan yang timpang, harapan yang terus dilawan, dan keberanian untuk tetap bersuara di tengah kebisuan.',
     comingSoon: {
       releaseDate: '28 Oct 2025',
