@@ -7,7 +7,9 @@ export type Release = {
   bg: string;
   bgColor: string;
   spotifyEmbedSource?: string;
-  comingSoon?: any;
+  comingSoon?: {
+    releaseDate: string;
+  };
 };
 
 export const RELEASES: Release[] = [

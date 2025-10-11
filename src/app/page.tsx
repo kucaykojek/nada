@@ -17,8 +17,6 @@ export default function Home() {
   const [platformActive, setPlatformActive] = useState('');
 
   const pinnedLinks = PLATFORMS.filter((val) => !!val.pin);
-  const releases = RELEASES.filter((val) => !val.comingSoon);
-  const comingReleases = RELEASES.filter((val) => !!val.comingSoon);
 
   return (
     <div className="relative flex flex-col justify-end items-center pb-40 w-screen h-[100dvh]">
