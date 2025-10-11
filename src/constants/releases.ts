@@ -7,6 +7,7 @@ export type Release = {
   bg: string;
   bgColor: string;
   spotifyEmbedSource?: string;
+  spotifyAlbumId?: string;
   comingSoon?: {
     releaseDate: string;
   };
@@ -78,6 +79,7 @@ export const RELEASES: Release[] = [
     bg: '/images/bg-derau.webp',
     bgColor: '#121212',
     spotifyEmbedSource: '',
+    spotifyAlbumId: '7LHJZBfL8j3KvhcPmMJW4t',
     desc: '“Derau” adalah EP yang merekam keheningan setelah kehilangan — tentang gema suara yang tersisa, ingatan yang tak hilang, dan usaha menemukan pulang di antara riuh yang memudar. Sebuah perjalanan sunyi yang jujur dan penuh makna.',
     comingSoon: {
       releaseDate: '12 Oct 2025',
@@ -142,7 +144,7 @@ export const RELEASES: Release[] = [
   // {
   //   key: 'midnight-grocery',
   //   title: 'Midnight Grocery',
-  //   type: 'album',
+  //   type: 'ep',
   //   year: 2026,
   //   cover: '/images/cover-midnight-grocery.webp',
   //   bg: '/images/bg-midnight-grocery.webp',

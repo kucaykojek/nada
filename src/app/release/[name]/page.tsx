@@ -1,20 +1,25 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 import Title from '@/components/Title';
 import Links from '@/components/Links';
 import Signature from '@/components/Signature';
 
+import SpotifyWhite from '@/assets/icon/spotify-white.svg';
+
 import { RELEASES } from '@/constants/releases';
 
 type Props = {
   params: Promise<{ name: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const name = (await params).name;
   const release = RELEASES.find((val) => val.key === name);
+
   if (!release) return { title: 'Nada Ayu Lestari' };
 
   return {
@@ -26,11 +31,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Release({ params }: Props) {
+export default async function ReleasePage({ params, searchParams }: Props) {
   const name = (await params)?.name;
   const release = RELEASES.find((val) => val.key === name);
 
   if (!release) return redirect('/');
+
+  const isPresaved = (await searchParams)?.presaved === 'true';
 
   return (
     <div
@@ -44,6 +51,7 @@ export default async function Release({ params }: Props) {
         fill
         priority
         alt={release.title}
+        title={release.title}
         className="top-0 left-0 fixed w-screen h-[100dvh] object-cover"
       />
       <div className="top-0 left-0 z-[1] fixed backdrop-blur-[4px] w-screen h-[100dvh] transition-all ease-in-out" />
@@ -66,9 +74,32 @@ export default async function Release({ params }: Props) {
             )}
 
             {!!release.comingSoon && (
-              <div className="flex flex-col justify-center items-center p-4 w-full h-full uppercase">
-                <div className="font-black text-3xl tracking-widest">COMING SOON</div>
-                <div className="text-xl tracking-widest">{release.comingSoon?.releaseDate}</div>
+              <div className="flex flex-col justify-center items-center p-4 w-full h-full">
+                <div className="font-black text-3xl uppercase tracking-widest">COMING SOON</div>
+                <div className="text-xl uppercase tracking-widest">{release.comingSoon?.releaseDate}</div>
+                {!!release.spotifyAlbumId && (
+                  <div className="mt-6">
+                    {isPresaved ? (
+                      <div
+                        className="flex justify-center items-center gap-2 bg-black px-4 py-1 rounded-xl w-full md:w-auto min-h-10 font-normal text-[#1ED760] text-xs tracking-widest"
+                        title={release.title}
+                      >
+                        <p aria-label="Success! Pre-Saved">
+                          Success! Pre-Saved on <strong>Spotify</strong>. Thank You 🎉
+                        </p>
+                      </div>
+                    ) : (
+                      <Link
+                        className="flex justify-center items-center gap-2 bg-[#1ED760] px-4 py-1 rounded-xl w-full md:w-auto min-h-10 font-normal text-sm tracking-widest transition-all ease-in-out"
+                        href={`/presave/${release.key}`}
+                        title={release.title}
+                      >
+                        <SpotifyWhite width={30} height={30} />
+                        <p aria-label="Pre-Save on Spotify">Pre-Save on Spotify</p>
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </div>
