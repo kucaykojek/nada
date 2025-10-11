@@ -19,7 +19,7 @@ export default function Home() {
   const pinnedLinks = PLATFORMS.filter((val) => !!val.pin);
 
   return (
-    <div className="relative flex flex-col justify-end items-center pb-40 w-screen h-[100dvh]">
+    <div className="relative flex flex-col justify-end items-center w-screen h-[100dvh]">
       <video
         muted
         autoPlay
@@ -32,10 +32,12 @@ export default function Home() {
         <source src="/bg.mp4" type="video/mp4" />
       </video>
       <div className="top-0 left-0 z-[1] fixed backdrop-blur-[2px] w-screen h-[100dvh] transition-all ease-in-out" />
-      <div className="z-10 relative flex flex-col justify-end items-center gap-6 p-4 max-w-screen text-center">
+
+      <div className="z-10 relative flex flex-col items-center gap-6 p-4 max-w-screen h-full text-center">
         <Title />
-        <div className="relative space-y-3 !mt-8">
-          <h2 className="text-sm tracking-widest">Releases</h2>
+
+        <div className="relative space-y-3 mt-auto">
+          <h2 className="tracking-widest">Releases</h2>
           <div className="[&::-webkit-scrollbar]:hidden block pl-4 max-w-screen [-ms-overflow-style:none] overflow-x-auto whitespace-nowrap [scrollbar-width:none]">
             {RELEASES.map((val, idx) => (
               <Link
@@ -49,14 +51,15 @@ export default function Home() {
             ))}
           </div>
         </div>
+
         <div className="relative space-y-3">
-          <h2 className="text-sm tracking-widest">Platforms</h2>
+          <h2 className="tracking-widest">Platforms</h2>
           <div className="flex md:flex-row flex-col items-center gap-4 text-left">
             {pinnedLinks.map((val, idx) => (
               <a
                 key={`platform-${idx}`}
                 className={cn(
-                  'flex justify-center items-center gap-2 bg-black/20 px-4 py-2 rounded-xl w-full md:w-auto min-h-12 font-normal tracking-widest transition-all ease-in-out',
+                  'flex justify-center items-center gap-2 bg-black/20 px-4 py-2 rounded-xl w-full md:w-auto min-h-12 font-normal text-sm tracking-widest transition-all ease-in-out',
                   val.className
                 )}
                 href={val.href}
@@ -75,8 +78,7 @@ export default function Home() {
           </div>
           <Links all={false} />
         </div>
-      </div>
-      <div className="bottom-4 left-1/2 z-[2] fixed w-fit -translate-x-1/2">
+
         <Signature />
       </div>
     </div>
