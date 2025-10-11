@@ -1,12 +1,13 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 import Title from '@/components/Title';
 import Links from '@/components/Links';
 import Signature from '@/components/Signature';
 
+import Spotify from '@/assets/icon/spotify.svg';
 import SpotifyWhite from '@/assets/icon/spotify-white.svg';
 
 import { RELEASES } from '@/constants/releases';
@@ -78,7 +79,7 @@ export default async function ReleasePage({ params, searchParams }: Props) {
                 <div className="font-black text-3xl uppercase tracking-widest">COMING SOON</div>
                 <div className="text-xl uppercase tracking-widest">{release.comingSoon?.releaseDate}</div>
                 {!!release.spotifyAlbumId && (
-                  <div className="mt-6">
+                  <div className="mt-6 mb-2">
                     {isPresaved ? (
                       <div
                         className="flex justify-center items-center gap-2 bg-black px-4 py-1 rounded-xl w-full md:w-auto min-h-10 font-normal text-[#1ED760] text-xs tracking-widest"
@@ -90,11 +91,13 @@ export default async function ReleasePage({ params, searchParams }: Props) {
                       </div>
                     ) : (
                       <Link
-                        className="flex justify-center items-center gap-2 bg-[#1ED760] px-4 py-1 rounded-xl w-full md:w-auto min-h-10 font-normal text-sm tracking-widest transition-all ease-in-out"
+                        className="group flex justify-center items-center gap-2 bg-black hover:bg-[#1ED760] px-4 py-2 rounded-xl w-full md:w-auto min-h-10 font-normal text-sm tracking-widest transition-all ease-in-out"
                         href={`/presave/${release.key}`}
                         title={release.title}
                       >
-                        <SpotifyWhite width={30} height={30} />
+                        <Spotify width={30} height={30} className="group-hover:hidden" />
+                        <SpotifyWhite width={30} height={30} className="hidden group-hover:block" />
+
                         <p aria-label="Pre-Save on Spotify">Pre-Save on Spotify</p>
                       </Link>
                     )}

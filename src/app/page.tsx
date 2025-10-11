@@ -1,7 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
 
 import { cn } from '@/utils/cn';
 
@@ -14,8 +11,6 @@ import { RELEASES } from '@/constants/releases';
 import { PLATFORMS } from '@/constants/links';
 
 export default function Home() {
-  const [platformActive, setPlatformActive] = useState('');
-
   const pinnedLinks = PLATFORMS.filter((val) => !!val.pin);
 
   return (
@@ -59,19 +54,15 @@ export default function Home() {
               <a
                 key={`platform-${idx}`}
                 className={cn(
-                  'flex justify-center items-center gap-2 bg-black/20 px-4 py-2 rounded-xl w-full md:w-auto min-h-12 font-normal text-sm tracking-widest transition-all ease-in-out',
+                  'group flex justify-center items-center gap-2 bg-black/20 px-4 py-2 rounded-xl w-full md:w-auto min-h-12 font-normal text-sm tracking-widest transition-all ease-in-out',
                   val.className
                 )}
                 href={val.href}
                 target="_blank"
-                onMouseEnter={() => setPlatformActive(val.key)}
-                onMouseLeave={() => setPlatformActive('')}
               >
-                {val.key === platformActive && !!val.iconHover ? (
-                  <val.iconHover width={36} height={36} />
-                ) : (
-                  <val.icon width={36} height={36} />
-                )}
+                <val.icon width={36} height={36} className={!!val.iconHover ? 'group-hover:hidden' : ''} />
+                {!!val.iconHover && <val.iconHover width={36} height={36} className="hidden group-hover:block" />}
+
                 <p aria-label={val.label}>{val.longLabel || val.label}</p>
               </a>
             ))}
