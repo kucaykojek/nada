@@ -1,4 +1,4 @@
-const Signature = ({ width, height = 50, color = "white" }: { width?: number; height?: number; color?: string }) => {
+const Signature = ({ width, height = 36, color = "white" }: { width?: number; height?: number; color?: string }) => {
   return (
     <svg width={width} height={height} viewBox="0 0 254 338" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

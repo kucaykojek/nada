@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
-import { Shadows_Into_Light_Two } from 'next/font/google';
+import { Outfit } from 'next/font/google';
 import { GoogleTagManager } from '@next/third-parties/google';
 
 import './globals.css';
 
-const fontSans = Shadows_Into_Light_Two({
+const fontSans = Outfit({
   variable: '--font-sans',
-  weight: '400',
   subsets: ['latin'],
 });
 
