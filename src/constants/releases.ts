@@ -78,12 +78,9 @@ export const RELEASES: Release[] = [
     cover: '/images/cover-derau.webp',
     bg: '/images/bg-derau.webp',
     bgColor: '#121212',
-    spotifyEmbedSource: '',
+    spotifyEmbedSource: 'https://open.spotify.com/embed/album/7LHJZBfL8j3KvhcPmMJW4t?utm_source=generator&theme=0',
     spotifyAlbumId: '7LHJZBfL8j3KvhcPmMJW4t',
     desc: '“Derau” adalah EP yang merekam keheningan setelah kehilangan — tentang gema suara yang tersisa, ingatan yang tak hilang, dan usaha menemukan pulang di antara riuh yang memudar. Sebuah perjalanan sunyi yang jujur dan penuh makna.',
-    comingSoon: {
-      releaseDate: '12 Oct 2025',
-    },
   },
   {
     key: 'di-negeri-ini',
