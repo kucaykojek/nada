@@ -8,7 +8,9 @@ import Links from '@/components/Links';
 import Signature from '@/components/Signature';
 
 import Spotify from '@/assets/icon/spotify.svg';
+import YouTube from '@/assets/icon/youtube.svg';
 import SpotifyWhite from '@/assets/icon/spotify-white.svg';
+import YouTubeWhite from '@/assets/icon/youtube-white.svg';
 
 import { PlatformKey, RELEASES } from '@/constants/releases';
 import { PLATFORMS } from '@/constants/links';
@@ -44,7 +46,9 @@ export default async function ReleasePage({ params, searchParams }: Props) {
   const isPresaved = (await searchParams)?.presaved === 'true';
   const isHasSpotify = !!release?.spotify?.albumId;
   const isHasYoutubeMusic = !!release?.['youtube-music']?.albumId;
-  const excludeLinks = [...(isHasSpotify ? ['spotify'] : []), ...(isHasYoutubeMusic ? ['youtube-music'] : [])];
+  const excludeLinks = !!release.comingSoon
+    ? []
+    : [...(isHasSpotify ? ['spotify'] : []), ...(isHasYoutubeMusic ? ['youtube-music'] : [])];
   const streamLinks = PLATFORMS.filter((val) => excludeLinks.includes(val.key));
 
   return (
@@ -74,7 +78,7 @@ export default async function ReleasePage({ params, searchParams }: Props) {
                 <div className="font-black text-3xl uppercase tracking-widest">COMING SOON</div>
                 <div className="text-xl uppercase tracking-widest">{release.comingSoon?.releaseDate}</div>
                 {!!release.spotify?.albumId && (
-                  <div className="mt-6 mb-2">
+                  <div className="relative mt-6 mb-2 w-full">
                     {isPresaved ? (
                       <div
                         className="flex justify-center items-center gap-2 bg-black px-4 py-1 rounded-xl w-full md:w-auto min-h-10 font-normal text-[#1ED760] text-xs tracking-widest"
@@ -86,7 +90,7 @@ export default async function ReleasePage({ params, searchParams }: Props) {
                       </div>
                     ) : (
                       <Link
-                        className="group flex justify-center items-center gap-2 bg-black hover:bg-[#1ED760] px-4 py-2 rounded-xl w-full md:w-auto min-h-10 font-normal text-sm tracking-widest transition-all ease-in-out"
+                        className="group inline-flex justify-center items-center gap-2 bg-black hover:bg-[#1ED760] px-4 py-2 rounded-xl w-full md:w-auto min-w-[16rem] min-h-10 font-normal text-sm tracking-widest transition-all ease-in-out"
                         href={`/presave/${release.key}`}
                         title={release.title}
                       >
@@ -96,6 +100,21 @@ export default async function ReleasePage({ params, searchParams }: Props) {
                         <p aria-label="Pre-Save on Spotify">Pre-Save on Spotify</p>
                       </Link>
                     )}
+                  </div>
+                )}
+
+                {!!release?.comingSoon?.trailerUrl && (
+                  <div className="relative mt-3 mb-2 w-full">
+                    <a
+                      className="group inline-flex justify-center items-center gap-2 bg-black hover:bg-[#FF0000] px-4 py-2 rounded-xl w-full md:w-auto min-w-[16rem] min-h-10 font-normal text-sm tracking-widest transition-all ease-in-out"
+                      href={release?.comingSoon?.trailerUrl}
+                      target="_blank"
+                    >
+                      <YouTube width={30} height={30} className="group-hover:hidden" />
+                      <YouTubeWhite width={30} height={30} className="hidden group-hover:block" />
+
+                      <p aria-label="Pre-Save on Spotify">Watch the Trailer</p>
+                    </a>
                   </div>
                 )}
               </div>
@@ -113,9 +132,9 @@ export default async function ReleasePage({ params, searchParams }: Props) {
           </div>
         </div>
 
-        {streamLinks.length > 0 && (
+        {!release.comingSoon && streamLinks.length > 0 && (
           <div className="relative space-y-3">
-            <h2 className="tracking-widest">Listen &ldquo;{release.title}&rdquo; on</h2>
+            <h2 className="tracking-widest">Listen &ldquo;{release.title}&rdquo;</h2>
             <div className="flex md:flex-row flex-col items-center gap-4 text-left">
               {streamLinks.map((val, idx) => {
                 const platformKey = val.key as PlatformKey;
@@ -142,7 +161,7 @@ export default async function ReleasePage({ params, searchParams }: Props) {
         )}
 
         <div className="relative space-y-3">
-          <h2 className="tracking-widest">Links</h2>
+          <h2 className="text-sm tracking-widest">Check Nada's on other platforms</h2>
           <div className="flex md:flex-row flex-col items-center gap-4 text-left">
             <Links excludes={excludeLinks} />
           </div>
