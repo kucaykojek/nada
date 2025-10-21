@@ -16,6 +16,7 @@ export type Release = {
   comingSoon?: {
     releaseDate: string;
     trailerUrl?: string;
+    shortDesc?: string;
   };
   desc?: string;
   spotify?: Platform;
@@ -131,6 +132,8 @@ export const RELEASES: Release[] = [
     comingSoon: {
       releaseDate: '28 Oct 2025',
       trailerUrl: 'https://youtube.com/shorts/wU9An7hA9x4?feature=share',
+      shortDesc:
+        '“Di Negeri Ini” adalah lagu tentang ketimpangan dan perjuangan suara rakyat di tengah kuasa yang menutup mata. Dengan lirik lugas dan penuh makna, lagu ini menjadi cermin sosial tentang keadilan yang timpang, harapan yang terus dilawan, dan keberanian untuk tetap bersuara di tengah kebisuan.',
     },
     spotify: {
       albumId: '2XqpiWVWMKRLoYDUrhLdoZ',

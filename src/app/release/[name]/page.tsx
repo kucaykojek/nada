@@ -77,6 +77,7 @@ export default async function ReleasePage({ params, searchParams }: Props) {
               <div className="flex flex-col justify-center items-center p-4 w-full h-full">
                 <div className="font-black text-3xl uppercase tracking-widest">COMING SOON</div>
                 <div className="text-xl uppercase tracking-widest">{release.comingSoon?.releaseDate}</div>
+                {!!release.comingSoon?.shortDesc && <p className="mt-2 text-sm">{release.comingSoon?.shortDesc}</p>}
                 {!!release.spotify?.albumId && (
                   <div className="relative mt-6 mb-2 w-full">
                     {isPresaved ? (
