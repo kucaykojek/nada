@@ -21,9 +21,9 @@ export default async function PreSavePage({ params, searchParams }: Props) {
 
     const tokenData = await exchangeCodeForToken(`${code}`);
 
-    if (!tokenData?.access_token || !release?.spotifyAlbumId) return redirect(`/release/${release.key}`);
+    if (!tokenData?.access_token || !release?.spotify?.albumId) return redirect(`/release/${release.key}`);
 
-    await saveAlbumToLibrary(tokenData?.access_token, release?.spotifyAlbumId);
+    await saveAlbumToLibrary(tokenData?.access_token, release?.spotify?.albumId);
 
     return redirect(`/release/${release.key}?presaved=true`);
   }

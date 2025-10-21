@@ -10,7 +10,10 @@ import Signature from '@/components/Signature';
 import Spotify from '@/assets/icon/spotify.svg';
 import SpotifyWhite from '@/assets/icon/spotify-white.svg';
 
-import { RELEASES } from '@/constants/releases';
+import { PlatformKey, RELEASES } from '@/constants/releases';
+import { PLATFORMS } from '@/constants/links';
+import { cn } from '@/utils/cn';
+import { getPlatformStreamUrl } from '@/utils/getter';
 
 type Props = {
   params: Promise<{ name: string }>;
@@ -36,9 +39,13 @@ export default async function ReleasePage({ params, searchParams }: Props) {
   const name = (await params)?.name;
   const release = RELEASES.find((val) => val.key === name);
 
-  if (!release) return redirect('/');
+  if (!release || (!!release && !(!!release.comingSoon || !!release.spotify?.albumId))) return redirect('/');
 
   const isPresaved = (await searchParams)?.presaved === 'true';
+  const isHasSpotify = !!release?.spotify?.albumId;
+  const isHasYoutubeMusic = !!release?.['youtube-music']?.albumId;
+  const excludeLinks = [...(isHasSpotify ? ['spotify'] : []), ...(isHasYoutubeMusic ? ['youtube-music'] : [])];
+  const streamLinks = PLATFORMS.filter((val) => excludeLinks.includes(val.key));
 
   return (
     <div
@@ -62,23 +69,11 @@ export default async function ReleasePage({ params, searchParams }: Props) {
 
         <div className="relative space-y-3 mt-auto">
           <div className="relative flex flex-col justify-center items-center bg-[#1F1F1F] rounded-2xl w-[100vw-4rem] md:w-[35rem] min-h-40 overflow-hidden">
-            {release.spotifyEmbedSource && (
-              <iframe
-                data-testid="embed-iframe"
-                src={release.spotifyEmbedSource}
-                width="100%"
-                height={release.type === 'single' ? 152 : 352}
-                allowFullScreen={false}
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-              ></iframe>
-            )}
-
-            {!!release.comingSoon && (
+            {!!release.comingSoon ? (
               <div className="flex flex-col justify-center items-center p-4 w-full h-full">
                 <div className="font-black text-3xl uppercase tracking-widest">COMING SOON</div>
                 <div className="text-xl uppercase tracking-widest">{release.comingSoon?.releaseDate}</div>
-                {!!release.spotifyAlbumId && (
+                {!!release.spotify?.albumId && (
                   <div className="mt-6 mb-2">
                     {isPresaved ? (
                       <div
@@ -104,11 +99,55 @@ export default async function ReleasePage({ params, searchParams }: Props) {
                   </div>
                 )}
               </div>
+            ) : (
+              <iframe
+                data-testid="embed-iframe"
+                src={`https://open.spotify.com/embed/album/${release.spotify?.albumId}?utm_source=generator&theme=0`}
+                width="100%"
+                height={release.type === 'single' ? 152 : 352}
+                allowFullScreen={false}
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
             )}
           </div>
         </div>
 
-        <Links />
+        {streamLinks.length > 0 && (
+          <div className="relative space-y-3">
+            <h2 className="tracking-widest">Listen &ldquo;{release.title}&rdquo; on</h2>
+            <div className="flex md:flex-row flex-col items-center gap-4 text-left">
+              {streamLinks.map((val, idx) => {
+                const platformKey = val.key as PlatformKey;
+                const platformData = release?.[platformKey];
+
+                return (
+                  <a
+                    key={`stream-on-${idx}`}
+                    className={cn(
+                      'group flex justify-center items-center gap-2 bg-black/20 px-4 py-2 rounded-xl w-full md:w-auto min-h-12 font-normal text-sm tracking-widest transition-all ease-in-out',
+                      val.className
+                    )}
+                    href={getPlatformStreamUrl(platformKey, platformData?.albumId)}
+                    target="_blank"
+                  >
+                    <val.icon width={36} height={36} className={!!val.iconHover ? 'group-hover:hidden' : ''} />
+                    {!!val.iconHover && <val.iconHover width={36} height={36} className="hidden group-hover:block" />}
+                    <p aria-label={val.label}>{val.longLabel || val.label}</p>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        <div className="relative space-y-3">
+          <h2 className="tracking-widest">Links</h2>
+          <div className="flex md:flex-row flex-col items-center gap-4 text-left">
+            <Links excludes={excludeLinks} />
+          </div>
+        </div>
+
         <Signature />
       </div>
     </div>

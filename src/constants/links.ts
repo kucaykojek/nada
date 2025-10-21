@@ -32,9 +32,11 @@ export const PLATFORMS = [
   },
   {
     key: 'youtube-music',
+    longLabel: 'Listen on YT Music',
     label: 'YouTube Music',
     icon: YouTubeMusic,
     href: 'https://music.youtube.com/channel/UCIl58vh0AgzcOG22fv64WKg',
+    className: 'cta-youtube',
   },
   {
     key: 'apple-music',

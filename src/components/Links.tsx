@@ -1,8 +1,10 @@
 import { PLATFORMS, SOCIALS } from '@/constants/links';
 import { cn } from '@/utils/cn';
 
-const Links = ({ all = true }: { all?: boolean }) => {
-  const links = all ? [...PLATFORMS, ...SOCIALS] : [...PLATFORMS.filter((val) => !val.pin), ...SOCIALS];
+const Links = ({ all = true, excludes = [] }: { all?: boolean; excludes?: string[] }) => {
+  const links = (all ? [...PLATFORMS, ...SOCIALS] : [...PLATFORMS.filter((val) => !val.pin), ...SOCIALS]).filter(
+    (val) => !excludes.includes(val.key)
+  );
 
   return (
     <div className="relative flex flex-wrap justify-center items-center gap-2">
