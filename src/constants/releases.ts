@@ -133,7 +133,7 @@ export const RELEASES: Release[] = [
       releaseDate: '28 Oct 2025',
       trailerUrl: 'https://youtube.com/shorts/H9NEkANhymI?feature=share',
       shortDesc:
-        '“Di Negeri Ini” adalah lagu tentang ketimpangan dan perjuangan suara rakyat di tengah kuasa yang menutup mata. Dengan lirik lugas dan penuh makna, lagu ini menjadi cermin sosial tentang keadilan yang timpang, harapan yang terus diperjuangkan, dan keberanian untuk tetap bersuara di tengah kebisuan.',
+        '🔥 “Di Negeri Ini” lahir dari keresahan — tentang suara-suara yang tak terdengar, keadilan yang sering berpihak, dan perjuangan yang tak pernah selesai.\nSemoga lagu ini jadi pengingat: kita masih punya suara, kita masih bisa berjuang. ✊🏼 \n\n 📢 Rilis bertepatan dengan Hari Sumpah Pemuda - 28 Oktober 2025\nMari terus bersuara, karena diam bukan pilihan.',
     },
     spotify: {
       albumId: '2XqpiWVWMKRLoYDUrhLdoZ',
