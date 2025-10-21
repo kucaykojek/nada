@@ -161,7 +161,7 @@ export default async function ReleasePage({ params, searchParams }: Props) {
         )}
 
         <div className="relative space-y-3">
-          <h2 className="text-sm tracking-widest">Check Nada's on other platforms</h2>
+          <h2 className="text-sm tracking-widest">Check Nada&#39;s on other platforms</h2>
           <div className="flex md:flex-row flex-col items-center gap-4 text-left">
             <Links excludes={excludeLinks} />
           </div>
